@@ -1,2 +1,2 @@
-# cs6229-final
+# cs6220-final
 This is  repo for Spring2020 cs6220 final project
