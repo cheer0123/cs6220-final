@@ -17,7 +17,7 @@ app.debug = True
 application = app.app
 
 
-logreg = load('log_reg.joblib')
+logreg = load('dt.joblib')
 
 
 # Implement a simple health check function (GET)
