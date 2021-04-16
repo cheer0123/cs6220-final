@@ -1,0 +1,87 @@
+swagger: '2.0'
+info:
+  title: HR Analysis API
+  version: "0.1"
+  description: An API that can help hr to analysis wether a candicate is looking a new job
+
+paths:
+  /health:
+    get:
+      summary: Checks the health of the service
+      description: Returns the health status of the service
+      operationId: hr_analysis_api.health
+      responses:
+        '200':
+          description: Service is healthy
+        '500':
+          description: Service is unhealthy
+
+  /predict:
+    post:
+      summary: Entrypoint to our prediction function
+      operationId: hr_analysis_api.predict
+      consumes:
+      - multipart/form-data
+      produces:
+      - application/json
+      parameters:
+        - in: formData
+          name: city_development_index
+          required: true
+          description: city development index
+          type: number
+        - in: formData
+          name: gender
+          required: true
+          description: gender of candicate(Male, Female, other)
+          type: string
+        - in: formData
+          name: relevent_experience
+          required: true
+          description: No relevent experience, Has relevent experience
+          type: string
+        - in: formData
+          name: enrolled_university
+          required: true
+          description: enrolled university type, no_enrollment, Part time course, Full time course
+          type: string
+        - in: formData
+          name: education_level
+          required: true
+          description: Graduate, Master, Phd
+          type: string
+        - in: formData
+          name: major_discipline
+          required: true
+          description: major discipline, Arts, Business Degree, Humanities, STEM, No Major, Other
+          type: string
+        - in: formData
+          name: experience
+          required: true
+          description: experience in year
+          type: string
+        - in: formData
+          name: company_size
+          required: true
+          description: <10, 10/49, 50-99, 100-500, 500-999, 1000-4999, 10000+, 5000-9999
+          type: string
+        - in: formData
+          name: company_type
+          required: true
+          description: Early Stage Startup, Funded Startup, NGO, Public Sector, Pvt Ltd, Other
+          type: string
+        - in: formData
+          name: last_new_job
+          required: true
+          description: last new job, enter a int
+          type: string
+        - in: formData
+          name: training_hours
+          required: true
+          description: training hours
+          type: number
+      responses:
+        '200':
+          description: Classification performed successfully
+        '500':
+          description: Unable to perform the classification
